@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "gsap": "^3.12.7",

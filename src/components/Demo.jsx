@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Typewriter } from "react-simple-typewriter";
-import { copy, linkIcon, loader, tick } from "../assets";
+import { copy, linkIcon, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
 
 const Demo = () => {
@@ -13,8 +13,6 @@ const Demo = () => {
   const [copied, setCopied] = useState("");
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
-  const inputRef = useRef(null); // Create ref for input
-
   useEffect(() => {
     const articlesFromLocalStorage = JSON.parse(
       localStorage.getItem("articles") || "[]"
@@ -24,7 +22,7 @@ const Demo = () => {
     }
 
     // Focus input field when the component mounts
-    inputRef.current?.focus();
+    // inputRef.current?.focus();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -70,7 +68,6 @@ const Demo = () => {
             onChange={(e) => setArticle({ ...article, url: e.target.value })}
             required
             className="url_input peer"
-            ref={inputRef} // Attach ref to input
           />
           <button
             type="submit"
