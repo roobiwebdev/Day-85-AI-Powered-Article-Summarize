@@ -11,7 +11,10 @@ const Hero = () => {
         <button
           type="button"
           onClick={() =>
-            window.open("https://github.com/TidbitsJS/Summize", "_blank")
+            window.open(
+              "https://github.com/roobiwebdev/Day-85-AI-Powered-Article-Summarizer.git",
+              "_blank"
+            )
           }
           className="black_btn"
         >
@@ -20,7 +23,7 @@ const Hero = () => {
       </nav>
 
       <h1 className="head_text">
-        Summarize Articles With 
+        Summarize Articles With
         <br className="max-md:hidden" />
         <span className="orange_gradient "> Sumz AI</span>
       </h1>
