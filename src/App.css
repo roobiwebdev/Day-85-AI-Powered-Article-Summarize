@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
-*/
-
 .main {
   width: 100vw;
   min-height: 100vh;
@@ -74,52 +70,6 @@
   }
 }
 
-/* Tailwind Styles */
-
-.app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
-}
-
-.black_btn {
-  @apply rounded-full border border-white bg-black py-1.5 px-5 text-sm text-white transition-all hover:bg-white hover:text-black mt-2;
-}
-
-.head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-white sm:text-6xl text-center;
-}
-
-.orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
-}
-
-/* .orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-blue-600 to-red-500 bg-clip-text text-transparent;
-} */
-
-.desc {
-  @apply mt-5 text-lg text-gray-300 sm:text-xl text-center max-w-2xl;
-}
-
-.url_input {
-  @apply block w-full rounded-md border border-gray-400 bg-black text-white py-2.5 pl-8 pr-12 shadow-lg font-satoshi font-medium focus:border-black focus:outline-none focus:ring-0;
-}
-
-.submit_btn {
-  @apply hover:border-gray-300 hover:text-gray-300 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans text-5xl pb-4 sm:pb-0  md:text-2xl font-medium text-gray-400;
-}
-
-.link_card {
-  @apply p-3 flex justify-start items-center flex-row bg-stone-950 border border-gray-600 gap-3 rounded-lg cursor-pointer;
-}
-
-.copy_btn {
-  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
-}
-
-.blue_gradient {
-  @apply font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
-}
-
 .summary_box {
   @apply rounded-xl border border-gray-800 bg-black/50 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
 }
@@ -144,6 +94,10 @@
   }
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 #scrollbar::-webkit-scrollbar {
   width: 0.4em;
 }
@@ -153,10 +107,5 @@
 #scrollbar::-webkit-scrollbar-thumb {
   border-radius: 25px;
   -webkit-box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(
-    to right,
-    #d97706,
-    #f59e0b,
-    #ee5807
-  ); /* Gradient applied here */
+  background: linear-gradient(to right, #d97706, #f59e0b, #ee5807);
 }
