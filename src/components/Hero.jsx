@@ -20,8 +20,8 @@ const Hero = () => {
       </nav>
 
       <h1 className="head_text">
-        Summarize Articles <br className="max-md:hidden" />
-        {/* <span className="orange_gradient ">OpenAI GPT-4</span> */}
+        Summarize Articles With
+        <br className="max-md:hidden" />
         <span className="orange_gradient ">Sumz AI</span>
       </h1>
       <h2 className="desc">
