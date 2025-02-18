@@ -25,7 +25,7 @@ const Hero = () => {
         <span className="orange_gradient ">Sumz AI</span>
       </h1>
       <h2 className="desc">
-        Simplify your reading with Summize, an open-source article summarizer
+        Simplify your reading with Sumz AI, an open-source article summarizer
         that transforms lengthy articles into clear and concise summaries
       </h2>
     </header>
