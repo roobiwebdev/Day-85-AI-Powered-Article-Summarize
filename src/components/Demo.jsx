@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { copy, linkIcon, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
 import { Trash2 } from "lucide-react";
+import { v4 as uuidv4 } from "uuid"; // Add UUID package
 
 const Demo = () => {
   const [article, setArticle] = useState({
@@ -15,12 +16,11 @@ const Demo = () => {
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
   useEffect(() => {
-    const articlesFromLocalStorage = JSON.parse(
-      localStorage.getItem("articles") || "[]"
+    const articles = JSON.parse(localStorage.getItem("articles") || []);
+    const migrated = articles.map((article) =>
+      article.id ? article : { ...article, id: uuidv4() }
     );
-    if (articlesFromLocalStorage.length > 0) {
-      setAllArticles(articlesFromLocalStorage);
-    }
+    setAllArticles(migrated);
   }, []);
 
   const handleSubmit = async (e) => {
@@ -31,12 +31,13 @@ const Demo = () => {
       const newArticle = {
         ...article,
         summary: data.summary,
+        id: uuidv4(), // Add UUID here
       };
-      const updatedAllArticles = [newArticle, ...allArticles];
 
-      setArticle(newArticle);
+      const updatedAllArticles = [newArticle, ...allArticles];
       setAllArticles(updatedAllArticles);
       localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
+      setArticle(newArticle);
     }
   };
 
@@ -46,10 +47,13 @@ const Demo = () => {
     setTimeout(() => setCopied(""), 3000);
   };
 
-  const handleDelete = (index) => {
-    const updatedArticles = allArticles.filter((_, i) => i !== index);
-    setAllArticles(updatedArticles);
-    localStorage.setItem("articles", JSON.stringify(updatedArticles));
+  const handleDelete = (id) => {
+    const updated = allArticles.filter((article) => article.id !== id);
+    setAllArticles(updated);
+    localStorage.setItem("articles", JSON.stringify(updated));
+
+    // Clear current article if deleted
+    if (article.id === id) setArticle({ url: "", summary: "" });
   };
 
   return (
@@ -84,9 +88,9 @@ const Demo = () => {
           className="flex flex-col gap-1 max-h-[11rem] overflow-y-auto"
           id="scrollbar"
         >
-          {allArticles.map((item, index) => (
+          {allArticles.map((item) => (
             <div
-              key={`link-${index}`}
+              key={`link-${item.id}`}
               className="flex items-center justify-between relative p-3 flex-row gap-3  cursor-pointer mr-2 rounded-lg  border border-gray-800 bg-black/50 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur "
             >
               <div
@@ -110,7 +114,7 @@ const Demo = () => {
               </div>
 
               <button
-                onClick={() => handleDelete(index)}
+                onClick={() => handleDelete(item.id)}
                 className="text-red-500"
               >
                 <Trash2 size={18} strokeWidth={1.5} />
@@ -125,7 +129,7 @@ const Demo = () => {
           <span className="loader"></span>
         ) : error ? (
           <p className="font-inter font-bold text-red-500 text-center">
-            Well, that was not supposed to happen..
+            Well, that was not supposed to happen ..
             <br />
             <span className="font-satoshi font-normal text-gray-400">
               {error?.data?.error}
