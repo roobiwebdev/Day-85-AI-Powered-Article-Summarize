@@ -20,9 +20,9 @@ const Hero = () => {
       </nav>
 
       <h1 className="head_text">
-        Summarize Articles
+        Summarize Articles With 
         <br className="max-md:hidden" />
-        <span className="orange_gradient "> With Sumz AI</span>
+        <span className="orange_gradient "> Sumz AI</span>
       </h1>
       <h2 className="desc">
         Simplify your reading with Sumz AI, an open-source article summarizer
