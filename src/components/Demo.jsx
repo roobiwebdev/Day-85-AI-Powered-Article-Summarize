@@ -3,7 +3,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { copy, linkIcon, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
 import { Trash2 } from "lucide-react";
-import { v4 as uuidv4 } from "uuid"; // Add UUID package
+import { v4 as uuidv4 } from "uuid"; 
 
 const Demo = () => {
   const [article, setArticle] = useState({
@@ -31,7 +31,7 @@ const Demo = () => {
       const newArticle = {
         ...article,
         summary: data.summary,
-        id: uuidv4(), // Add UUID here
+        id: uuidv4(), 
       };
 
       const updatedAllArticles = [newArticle, ...allArticles];
@@ -52,7 +52,6 @@ const Demo = () => {
     setAllArticles(updated);
     localStorage.setItem("articles", JSON.stringify(updated));
 
-    // Clear current article if deleted
     if (article.id === id) setArticle({ url: "", summary: "" });
   };
 
@@ -145,7 +144,7 @@ const Demo = () => {
                 </span>
               </h2>
               <div className="rounded-xl border border-gray-800 bg-black/50 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4 ">
-                {/* Typing Effect with paragraphs separated by newlines */}
+
                 <p className="font-inter font-medium text-sm text-gray-200 leading-relaxed whitespace-pre-wrap my-[.8em]">
                   <Typewriter
                     words={[article.summary]}
@@ -158,7 +157,7 @@ const Demo = () => {
                   />
                 </p>
 
-                {/* Copy Button for Summary */}
+             
                 <div
                   className="w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer absolute top-2 right-2"
                   onClick={() => handleCopy(article.summary)}
