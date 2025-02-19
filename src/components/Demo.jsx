@@ -138,7 +138,7 @@ const Demo = () => {
           article.summary && (
             <div className="flex flex-col gap-3 relative">
               <h2 className="font-satoshi font-bold text-gray-300 text-xl">
-                Article{" "}
+                Article 
                 <span className="font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                   Summary
                 </span>
