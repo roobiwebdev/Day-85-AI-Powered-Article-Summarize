@@ -15,6 +15,7 @@ const Demo = () => {
   const [copied, setCopied] = useState("");
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
+
   useEffect(() => {
     const articles = JSON.parse(localStorage.getItem("articles") || []);
     const migrated = articles.map((article) =>
