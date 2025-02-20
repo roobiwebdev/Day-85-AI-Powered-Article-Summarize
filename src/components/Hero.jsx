@@ -12,7 +12,7 @@ const Hero = () => {
           type="button"
           onClick={() =>
             window.open(
-              "https://github.com/roobiwebdev/Day-85-AI-Powered-Article-Summarizer.https://github.com/roobiwebdev/Day-85-AI-Powered-Article-Summarize",
+              "https://github.com/roobiwebdev/Day-85-AI-Powered-Article-Summarize.git",
               "_blank"
             )
           }
