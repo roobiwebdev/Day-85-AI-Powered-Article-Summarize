@@ -156,21 +156,11 @@ const Demo = () => {
               <div className="rounded-xl border border-gray-800 bg-black/50 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4 ">
                 <p className="font-inter font-medium text-sm text-gray-200 leading-relaxed whitespace-pre-wrap my-[.8em]">
                   <Typewriter
-  onInit={(typewriter) => {
-    const lines = article.summary.split('\n'); // Assuming each line in the summary is separated by a newline character
-    lines.forEach((line, index) => {
-      typewriter
-        .typeString(line)
-        .pauseFor(500) // Adjust the pause between lines if needed
-        .callFunction(() => {
-          if (index < lines.length - 1) typewriter.start(); // Continue to the next line if it's not the last one
-        });
-    });
-  }}
-  cursor
-  cursorStyle="|"
-  typeSpeed={50} // Adjust the speed here
-  deleteSpeed={50} // Adjust the delete speed if necessary
+  words={[article.summary]}
+  loop={1}
+  typeSpeed={50}
+  deleteSpeed={50}
+  delaySpeed={1000}
 />
                 </p>
 
