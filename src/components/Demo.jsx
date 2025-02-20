@@ -148,7 +148,7 @@ const Demo = () => {
           article.summary && (
             <div className="flex flex-col gap-3 relative">
               <h2 className="font-satoshi font-bold text-gray-300 text-xl">
-                Article
+                Article 
                 <span className="font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                   Summary
                 </span>
@@ -156,12 +156,12 @@ const Demo = () => {
               <div className="rounded-xl border border-gray-800 bg-black/50 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4 ">
                 <p className="font-inter font-medium text-sm text-gray-200 leading-relaxed whitespace-pre-wrap my-[.8em]">
                   <Typewriter
-  words={[article.summary]}
-  loop={1}
-  typeSpeed={2}
-  deleteSpeed={5}
-  delaySpeed={100}
-/>
+                    words={[article.summary]}
+                    loop={1}
+                    typeSpeed={2}
+                    deleteSpeed={5}
+                    delaySpeed={5}
+                   />
                 </p>
 
                 <div
