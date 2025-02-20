@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { copy, linkIcon, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
-import { Trash2 } from "lucide-react";
-import { v4 as uuidv4 } from "uuid"; 
+import { Trash2, SendHorizontal } from "lucide-react";
+import { v4 as uuidv4 } from "uuid";
 
 const Demo = () => {
   const [article, setArticle] = useState({
@@ -15,13 +15,22 @@ const Demo = () => {
   const [copied, setCopied] = useState("");
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
-
   useEffect(() => {
-    const articles = JSON.parse(localStorage.getItem("articles") || []);
-    const migrated = articles.map((article) =>
-      article.id ? article : { ...article, id: uuidv4() }
-    );
-    setAllArticles(migrated);
+    const storedArticles = localStorage.getItem("articles");
+    if (storedArticles) {
+      try {
+        const articles = JSON.parse(storedArticles);
+        const migrated = articles.map((article) =>
+          article.id ? article : { ...article, id: uuidv4() }
+        );
+        setAllArticles(migrated);
+      } catch (error) {
+        console.error("Failed to parse articles from localStorage:", error);
+        setAllArticles([]);
+      }
+    } else {
+      setAllArticles([]);
+    }
   }, []);
 
   const handleSubmit = async (e) => {
@@ -32,7 +41,7 @@ const Demo = () => {
       const newArticle = {
         ...article,
         summary: data.summary,
-        id: uuidv4(), 
+        id: uuidv4(),
       };
 
       const updatedAllArticles = [newArticle, ...allArticles];
@@ -78,9 +87,9 @@ const Demo = () => {
           />
           <button
             type="submit"
-            className="hover:border-gray-300 hover:text-gray-300 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans text-5xl pb-4 sm:pb-0  md:text-2xl font-medium text-gray-400 peer-focus:border-gray-100 peer-focus:text-gray-100"
+            className="hover:border-gray-300 hover:text-gray-300 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans font-medium text-gray-400 peer-focus:border-gray-100 peer-focus:text-gray-100"
           >
-            <p>↵</p>
+            <SendHorizontal />
           </button>
         </form>
 
@@ -139,13 +148,12 @@ const Demo = () => {
           article.summary && (
             <div className="flex flex-col gap-3 relative">
               <h2 className="font-satoshi font-bold text-gray-300 text-xl">
-                Article 
+                Article
                 <span className="font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                   Summary
                 </span>
               </h2>
               <div className="rounded-xl border border-gray-800 bg-black/50 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4 ">
-
                 <p className="font-inter font-medium text-sm text-gray-200 leading-relaxed whitespace-pre-wrap my-[.8em]">
                   <Typewriter
                     words={[article.summary]}
@@ -158,7 +166,6 @@ const Demo = () => {
                   />
                 </p>
 
-             
                 <div
                   className="w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer absolute top-2 right-2"
                   onClick={() => handleCopy(article.summary)}
