@@ -158,9 +158,9 @@ const Demo = () => {
                   <Typewriter
   words={[article.summary]}
   loop={1}
-  typeSpeed={50}
-  deleteSpeed={50}
-  delaySpeed={1000}
+  typeSpeed={2}
+  deleteSpeed={5}
+  delaySpeed={100}
 />
                 </p>
 
