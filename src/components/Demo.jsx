@@ -160,9 +160,9 @@ const Demo = () => {
                     loop={1}
                     // cursor
                     // cursorStyle="|"
-                    typeSpeed={2}
-                    deleteSpeed={5}
-                    delaySpeed={100}
+                    typeSpeed={50}
+                    deleteSpeed={50}
+                    delaySpeed={1000}
                   />
                 </p>
 
