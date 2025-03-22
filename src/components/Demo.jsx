@@ -10,7 +10,6 @@ const Demo = () => {
     url: "",
     summary: "",
   });
-
   
   const [allArticles, setAllArticles] = useState([]);
   const [copied, setCopied] = useState("");
@@ -90,7 +89,7 @@ const Demo = () => {
             type="submit"
             className="hover:border-gray-300 hover:text-gray-300 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans font-medium text-gray-400 peer-focus:border-gray-100 peer-focus:text-gray-100"
           >
-            <SendHorizontal />
+            <Send />
           </button>
         </form>
 
