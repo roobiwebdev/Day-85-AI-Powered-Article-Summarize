@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { copy, linkIcon, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
-import { Trash2, SendHorizontal } from "lucide-react";
+import { Trash2, Send } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 
 const Demo = () => {
